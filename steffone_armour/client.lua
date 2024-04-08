@@ -1,5 +1,6 @@
 ESX = exports["es_extended"]:getSharedObject()
 
+local prezzo = STEFFONE.Prezzo
 
 Citizen.CreateThread(function()
     for k,v in pairs(STEFFONE.CordinateMarker) do
@@ -23,7 +24,6 @@ Citizen.CreateThread(function()
 end)
 
 RegisterNetEvent("steffone:menudefault", function()
-    local prezzo = 1000
     local ped = cache.ped
     local Elements = {
         {label = "Prendi armatura 25", name = "armatura25"},
@@ -82,7 +82,6 @@ RegisterNetEvent("steffone:menudefault", function()
 end)
 
 RegisterNetEvent("steffone:menuoxlib", function()
-    local prezzo = 1000
     local ped = cache.ped
     lib.registerContext({
         id = 'steffone_armatura',
