@@ -1,5 +1,6 @@
 ESX = exports["es_extended"]:getSharedObject()
 
+
 Citizen.CreateThread(function()
     for k,v in pairs(STEFFONE.CordinateMarker) do
         TriggerEvent('gridsystem:registerMarker', {
@@ -22,6 +23,7 @@ Citizen.CreateThread(function()
 end)
 
 RegisterNetEvent("steffone:menudefault", function()
+    local prezzo = 1000
     local ped = cache.ped
     local Elements = {
         {label = "Prendi armatura 25", name = "armatura25"},
@@ -37,22 +39,41 @@ RegisterNetEvent("steffone:menudefault", function()
         elements = Elements
     }, function(data, menu) 
         if data.current.name == "armatura25" then
-            SetPedArmour(ped, 25)
-            ESX.ShowNotification("Hai preso: 25%")
-            menu.close()
+            ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                if steffone then
+                    SetPedArmour(ped, 25)
+                    ESX.ShowNotification("Hai preso: 25%, e hai pagato: " .. prezzo)
+                
+                end
+            end, prezzo)
         elseif data.current.name == "armatura50" then
-            SetPedArmour(ped, 50)
-            ESX.ShowNotification("Hai preso: 50%")
+            ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                if steffone then
+                    SetPedArmour(ped, 50)
+                    ESX.ShowNotification("Hai preso: 50% e hai pagato: " .. prezzo)
+                end
+            end, prezzo)
         elseif data.current.name == "armatura75" then
-            SetPedArmour(ped, 75)
-            ESX.ShowNotification("Hai preso: 75%")
-            menu.close()
+            ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                if steffone then
+                    SetPedArmour(ped, 75)
+                    ESX.ShowNotification("Hai preso: 75% e hai pagato: " .. prezzo)
+                end
+            end, prezzo)
         elseif data.current.name == "armatura100" then
-            SetPedArmour(ped, 100)
-            ESX.ShowNotification("Hai preso: 100%")
+            ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                if steffone then
+                    SetPedArmour(ped, 100)
+                    ESX.ShowNotification("Hai preso: 100% e hai pagato: " .. prezzo)
+                end
+            end, prezzo)
         elseif data.current.name == "togligiubbo" then
-            SetPedArmour(ped, 0)
-            ESX.ShowNotification("Hai tolto il giubbo")
+            ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                if steffone then
+                    SetPedArmour(ped, 0)
+                    ESX.ShowNotification("Hai tolto il giubbo")
+                end
+            end, prezzo)
         end
     end, function(data, menu) -- Funzione di cancellazione
         print("Chiusura del menu")
@@ -61,6 +82,7 @@ RegisterNetEvent("steffone:menudefault", function()
 end)
 
 RegisterNetEvent("steffone:menuoxlib", function()
+    local prezzo = 1000
     local ped = cache.ped
     lib.registerContext({
         id = 'steffone_armatura',
@@ -70,32 +92,48 @@ RegisterNetEvent("steffone:menuoxlib", function()
                 title = 'Prendi Giubbo - 25',
                 icon = "shield-halved",
                 onSelect = function()
-                    SetPedArmour(ped, 25)
-                    ESX.ShowNotification("Hai preso: 25%")
+                    ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                        if steffone then
+                            SetPedArmour(ped, 25)
+                            ESX.ShowNotification("Hai preso: 25% e hai pagato: " .. prezzo)
+                        end
+                    end, 1000)
                 end
             },
             {
                 title = 'Prendi Giubbo - 50',
                 icon = "shield-halved",
                 onSelect = function()
-                    SetPedArmour(ped, 50)
-                    ESX.ShowNotification("Hai preso: 50%")
+                    ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                        if steffone then
+                            SetPedArmour(ped, 50)
+                            ESX.ShowNotification("Hai preso: 50% e hai pagato: " .. prezzo)
+                        end
+                    end, 1000)
                 end
             },
             {
                 title = 'Prendi Giubbo - 75',
                 icon = "shield-halved",
                 onSelect = function()
-                    SetPedArmour(ped, 75)
-                    ESX.ShowNotification("Hai preso: 75%")
+                    ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                        if steffone then
+                            SetPedArmour(ped, 75)
+                            ESX.ShowNotification("Hai preso: 75% e hai pagato: " .. prezzo)
+                        end
+                    end, 1000)
                 end
             },
             {
                 title = 'Prendi Giubbo - 100',
                 icon = "shield-halved",
                 onSelect = function()
-                    SetPedArmour(ped, 100)
-                    ESX.ShowNotification("Hai preso: 100%")
+                    ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
+                        if steffone then
+                            SetPedArmour(ped, 100)
+                            ESX.ShowNotification("Hai preso: 100% e hai pagato: " .. prezzo)
+                        end
+                    end, 1000)
                 end
             },
             {
