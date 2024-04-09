@@ -1,11 +1,14 @@
 ESX = exports["es_extended"]:getSharedObject()
 
-local prezzo = STEFFONE.Prezzo
+local prezzo25 = STEFFONE.Prezzo25
+local prezzo50 = STEFFONE.Prezzo50
+local prezzo75 = STEFFONE.Prezzo75
+local prezzo100 = STEFFONE.Prezzo100
 
 Citizen.CreateThread(function()
     for k,v in pairs(STEFFONE.CordinateMarker) do
         TriggerEvent('gridsystem:registerMarker', {
-            name = 'steffone_armour',
+            name = 'steffone_armour' .. k,
             pos = vector3(v.x,v.y,v.z),
             scale = vector3(1, 1, 1),
             msg = 'Premi [E] per interagire',
@@ -42,31 +45,31 @@ RegisterNetEvent("steffone:menudefault", function()
             ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                 if steffone then
                     SetPedArmour(ped, 25)
-                    ESX.ShowNotification("Hai preso: 25%, e hai pagato: " .. prezzo)
+                    ESX.ShowNotification("Hai preso: 25%, e hai pagato: " .. prezzo25)
                 
                 end
-            end, prezzo)
+            end, prezzo25)
         elseif data.current.name == "armatura50" then
             ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                 if steffone then
                     SetPedArmour(ped, 50)
-                    ESX.ShowNotification("Hai preso: 50% e hai pagato: " .. prezzo)
+                    ESX.ShowNotification("Hai preso: 50% e hai pagato: " .. Prezzo50)
                 end
-            end, prezzo)
+            end, Prezzo50)
         elseif data.current.name == "armatura75" then
             ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                 if steffone then
                     SetPedArmour(ped, 75)
-                    ESX.ShowNotification("Hai preso: 75% e hai pagato: " .. prezzo)
+                    ESX.ShowNotification("Hai preso: 75% e hai pagato: " .. prezzo75)
                 end
-            end, prezzo)
+            end, prezzo75)
         elseif data.current.name == "armatura100" then
             ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                 if steffone then
                     SetPedArmour(ped, 100)
-                    ESX.ShowNotification("Hai preso: 100% e hai pagato: " .. prezzo)
+                    ESX.ShowNotification("Hai preso: 100% e hai pagato: " .. prezzo100)
                 end
-            end, prezzo)
+            end, prezzo100)
         elseif data.current.name == "togligiubbo" then
             ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                 if steffone then
@@ -94,9 +97,9 @@ RegisterNetEvent("steffone:menuoxlib", function()
                     ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                         if steffone then
                             SetPedArmour(ped, 25)
-                            ESX.ShowNotification("Hai preso: 25% e hai pagato: " .. prezzo)
+                            ESX.ShowNotification("Hai preso: 25% e hai pagato: " .. prezzo25)
                         end
-                    end, 1000)
+                    end, prezzo25)
                 end
             },
             {
@@ -106,9 +109,9 @@ RegisterNetEvent("steffone:menuoxlib", function()
                     ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                         if steffone then
                             SetPedArmour(ped, 50)
-                            ESX.ShowNotification("Hai preso: 50% e hai pagato: " .. prezzo)
+                            ESX.ShowNotification("Hai preso: 50% e hai pagato: " .. prezzo50)
                         end
-                    end, 1000)
+                    end, prezzo50)
                 end
             },
             {
@@ -118,9 +121,9 @@ RegisterNetEvent("steffone:menuoxlib", function()
                     ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                         if steffone then
                             SetPedArmour(ped, 75)
-                            ESX.ShowNotification("Hai preso: 75% e hai pagato: " .. prezzo)
+                            ESX.ShowNotification("Hai preso: 75% e hai pagato: " .. prezzo75)
                         end
-                    end, 1000)
+                    end, prezzo75)
                 end
             },
             {
@@ -130,9 +133,9 @@ RegisterNetEvent("steffone:menuoxlib", function()
                     ESX.TriggerServerCallback('steffone:checkSoldi', function(steffone)
                         if steffone then
                             SetPedArmour(ped, 100)
-                            ESX.ShowNotification("Hai preso: 100% e hai pagato: " .. prezzo)
+                            ESX.ShowNotification("Hai preso: 100% e hai pagato: " .. prezzo100)
                         end
-                    end, 1000)
+                    end, prezzo100)
                 end
             },
             {
